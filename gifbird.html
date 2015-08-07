@@ -283,7 +283,7 @@ $(function(){
           var link = $('<a>').text("download")
           link.attr('href', URL.createObjectURL(blob));
           link.attr("download","gifbird.gif");
-          //$('#screenshot').append(link);
+          $('#screenshot').append(link);
           //window.open(URL.createObjectURL(blob));
           blobToDataURL(blob, function(url){
             $('#bin').val(url.replace(/^data:image\/gif;base64,/,''));
