@@ -9,7 +9,6 @@
         <title>#GIFBIRD</title>
         <meta property="og:title" content="#GIFBIRD">
         <meta property="og:description" content="タップで上手く操縦するゲームです">
-        <!--- <meta property="og:image" content="http://inajob.dip.jp/gifgame/gifgame.gif"> -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/gif.js"></script>
@@ -200,6 +199,12 @@ MainScene.prototype = {
     return result;
   }
 }
+function blobToDataURL(blob, callback) {
+  var a = new FileReader();
+  a.onload = function(e) {callback(e.target.result);}
+  a.readAsDataURL(blob);
+}
+
 
 $(function(){
   canv = $('#canv');
@@ -264,6 +269,7 @@ $(function(){
         render(function(blob){
           $('.retry').show();
           $('#screenshot').empty();
+
           var img = $('<img>')
           img.attr('src', URL.createObjectURL(blob));
           $('#screenshot').append(img);
@@ -343,6 +349,9 @@ a{
 #screenshot img{
   border:solid 2px white;
 }
+p{
+  color:white;
+}
 
 </style>
     <body>
@@ -353,6 +362,7 @@ a{
           <div class="title">
             <h1 class="logo">#GIFBIRD</h1>
             <h1 class="touch blink js-retry">TOUCH START</h1>
+            <p>iPhoneの人はSafariで開いてね！</p>
           </div>
           <div class="gameover">
             <h1 class="logo"><span class="js-over-logo">GAME OVER</span></h1>
