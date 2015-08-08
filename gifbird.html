@@ -43,8 +43,11 @@ var ctx;
 var time = 0;
 var mousef = false
 var overTime = 0;
+var animCount = 0;
 //var daikonImg = loadImg('img/daikon.gif');
 //var etsukoImg = loadImg('img/etsuko.gif');
+
+var birdImgs = [loadImg('img/bird1.gif'), loadImg('img/bird2.gif')];
 
 function Chr(x, y, w, h){
   this.x = x;
@@ -85,7 +88,7 @@ Chr.prototype = {
       case 'my':
         ctx.fillStyle="yellow";
         ctx.fillRect(this.x, this.y, this.w, this.h);
-        //ctx.drawImage(etsukoImg, this.x - this.w/2, this.y - this.h/2, this.w*2, this.h*2);
+        ctx.drawImage(birdImgs[animCount % 2], this.x - 2, this.y - 2, this.w + 4, this.h + 4);
         break;
       default:
         ctx.fillStyle="green";
@@ -133,6 +136,12 @@ MainScene.prototype = {
     var result = true;
     if(mousef){
       this.my.vy -= 0.16;
+    }
+    if(time % 40 == 0){
+      animCount ++;
+    }
+    if(time % 5 == 0 && mousef){
+      animCount ++;
     }
 
     // gen
