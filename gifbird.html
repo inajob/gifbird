@@ -220,7 +220,6 @@ $(function(){
 
   //$('.over .title').hide();
   $('#loading').hide();
-  $('#upload').hide();
   $('.over .gameover').hide();
   $('.js-retry').bind('touchstart mousedown', function(){
     $('#screenshot').empty();
@@ -242,12 +241,6 @@ $(function(){
     if(e.type=='touchmove'){
       e.preventDefault();
     }
-  })
-  $('#upload-form').bind('submit', function(){
-    $('#upload').hide();
-    $('.retry').hide();
-    $('#loading').show();
-    return true;
   })
 
   function start(){
@@ -296,7 +289,6 @@ $(function(){
           //window.open(URL.createObjectURL(blob));
           blobToDataURL(blob, function(url){
             $('#bin').val(url.replace(/^data:image\/gif;base64,/,''));
-            $('#upload').show();
           });
         });
       }
@@ -397,12 +389,6 @@ input{
           <div class="gameover">
             <h1 class="logo"><span class="js-over-logo">GAME OVER</span></h1>
             <div id="screenshot"></div>
-            <div id="upload">
-              <form action="http://inajob.dip.jp/dev/gifgame/up.php" method="POST" id="upload-form">
-                <textarea id="bin" name="bin"></textarea>
-                <input type="submit" value="make imgur">
-              </form>
-            </div>
             <h1 id="loading" class="logo blink">Uploading...</h1>
             <h1 class="logo blink js-title retry">RETRY</h1>
           </div>
